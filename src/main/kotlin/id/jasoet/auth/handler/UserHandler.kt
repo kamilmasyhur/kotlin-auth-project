@@ -51,6 +51,7 @@ class UserHandler(private val database: Database) {
             user.apply {
                 name = update.name
                 email = update.email
+                password = update.password
                 bio = update.bio
                 active = update.active
                 groups = update.groups

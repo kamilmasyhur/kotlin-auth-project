@@ -3,11 +3,7 @@ package id.jasoet.auth.model
 import io.ebean.annotation.WhenCreated
 import io.ebean.annotation.WhenModified
 import java.time.Instant
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.Id
-import javax.persistence.ManyToMany
-import javax.persistence.Table
+import javax.persistence.*
 import javax.validation.constraints.NotEmpty
 
 @Entity
@@ -19,6 +15,8 @@ data class User(
         var email: String,
         @Column
         var bio: String?,
+        @Column
+        var password: String,
         var active: Boolean,
         @ManyToMany
         @field:NotEmpty
