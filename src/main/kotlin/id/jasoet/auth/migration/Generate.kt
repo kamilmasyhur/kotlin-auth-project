@@ -14,5 +14,5 @@ fun main() {
     }.koin
 
     val dataSource = koin.get<DataSource>()
-    dataSource.generateMigrationFile(Platform.H2, "h2")
+    dataSource.generateMigrationFile(Platform.POSTGRES, "postgresql")
 }

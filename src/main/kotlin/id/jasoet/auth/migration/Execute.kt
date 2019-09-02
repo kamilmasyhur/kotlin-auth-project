@@ -13,5 +13,5 @@ fun main() {
     }.koin
 
     val dataSource = koin.get<DataSource>()
-    dataSource.executeMigration("classpath:/dbmigration/h2")
+    dataSource.executeMigration("classpath:/dbmigration/postgresql")
 }

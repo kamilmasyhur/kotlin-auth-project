@@ -8,7 +8,7 @@ val jUnitVersion = "5.4.2"
 
 val koinVersion: String = "2.0.1"
 val hikariCpVersion: String = "3.3.1"
-val h2DatabaseVersion: String = "1.4.199"
+val postgresDatabaseVersion: String = "42.1.4"
 val flywayVersion: String = "5.2.4"
 
 val ebeanVersion: String = "11.43.3"
@@ -47,7 +47,7 @@ dependencies {
     implementation("org.koin:koin-ktor:$koinVersion")
     implementation("org.koin:koin-logger-slf4j:$koinVersion")
 
-    runtime("com.h2database:h2:$h2DatabaseVersion")
+    runtime("org.postgresql:postgresql:$postgresDatabaseVersion")
     implementation("org.flywaydb:flyway-core:$flywayVersion")
     implementation("com.zaxxer:HikariCP:$hikariCpVersion")
 
