@@ -5,6 +5,7 @@ import io.ebean.annotation.WhenModified
 import java.time.Instant
 import javax.persistence.*
 import javax.validation.constraints.NotEmpty
+import javax.validation.constraints.NotNull
 
 @Entity
 @Table(name = "t_user")
@@ -16,6 +17,7 @@ data class User(
         @Column
         var bio: String?,
         @Column
+        @NotNull
         var password: String,
         var active: Boolean,
         @ManyToMany
@@ -35,8 +37,6 @@ data class Group(
         @Id
         var id: Long,
         var name: String,
-        @Column(length = 600)
-        var description: String,
         var policy: String,
         @WhenCreated
         @Column(name = "created")

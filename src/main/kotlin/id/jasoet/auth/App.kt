@@ -4,15 +4,13 @@ import com.typesafe.config.Config
 import id.jasoet.auth.feature.registerRedirection
 import id.jasoet.auth.module.dataSourceModule
 import id.jasoet.auth.module.handlerModule
+import id.jasoet.auth.module.service
 import id.jasoet.auth.route.user
+import id.jasoet.auth.service.UserService
 import io.ktor.application.Application
 import io.ktor.application.call
 import io.ktor.application.install
-import io.ktor.auth.Authentication
-import io.ktor.auth.UserIdPrincipal
-import io.ktor.auth.authenticate
-import io.ktor.auth.authentication
-import io.ktor.auth.basic
+import io.ktor.auth.*
 import io.ktor.features.ContentNegotiation
 import io.ktor.features.StatusPages
 import io.ktor.gson.gson
@@ -33,7 +31,7 @@ fun Application.mainModule() {
 
     install(Koin) {
         slf4jLogger()
-        modules(listOf(dataSourceModule, handlerModule))
+        modules(listOf(dataSourceModule, handlerModule, service))
     }
 
     install(StatusPages) {
@@ -44,8 +42,8 @@ fun Application.mainModule() {
         basic(name = "basic") {
             realm = "Ktor Server"
             validate { credentials ->
-                if (credentials.name == credentials.password) {
-                    //TODO Implement AuthenticationService and use here
+                val userService = UserService(get())
+                if (userService.isLoginSuccess(credentials.name, credentials.password)) {
                     UserIdPrincipal(credentials.name)
                 } else {
                     null

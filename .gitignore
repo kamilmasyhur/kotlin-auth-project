@@ -6,3 +6,5 @@ build
 .idea/
 *.iml
 src/main/resources/dbmigration/
+out/
+*.class
